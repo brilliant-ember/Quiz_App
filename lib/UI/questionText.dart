@@ -16,12 +16,22 @@ class TheState extends State<QuestionText> with SingleTickerProviderStateMixin{
   @override
   void initState(){
     super.initState();
-    _fontSizeAnimeController = new AnimationController(duration: new Duration(milliseconds:1000), vsync:this);
+    _fontSizeAnimeController = new AnimationController(duration: new Duration(milliseconds:700), vsync:this);
     _fontSizeAnime = new CurvedAnimation(parent: _fontSizeAnimeController, curve: Curves.bounceOut);
     _fontSizeAnime.addListener( ()=> this.setState( () {}));
     _fontSizeAnimeController.forward();
   }
 
+  @override
+  void @override
+    void didUpdateWidget(QuestionText oldWidget) {
+      // TODO: implement didUpdateWidget
+      super.didUpdateWidget(oldWidget);
+      if (oldWidget.question != widget.question){
+        _fontSizeAnimeController.reset();
+        _fontSizeAnimeController.forward();
+      }
+    }
 
   @override
   Widget build(BuildContext c){

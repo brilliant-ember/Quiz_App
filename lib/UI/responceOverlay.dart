@@ -26,7 +26,6 @@ class ResponceOverlayState extends State<ResponceOverlay> with SingleTickerProvi
       _iconAnimeCont.forward();
     }
 
-
   @override
   Widget build(BuildContext c){
     return new Material(
