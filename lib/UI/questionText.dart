@@ -5,7 +5,7 @@ class QuestionText extends StatefulWidget{
   QuestionText(this.question);
   @override
     State<StatefulWidget> createState() {
-      return new TheState(question);
+      return new TheState();
     }
 }
 
@@ -22,14 +22,13 @@ class TheState extends State<QuestionText> with SingleTickerProviderStateMixin{
     _fontSizeAnimeController.forward();
   }
 
-  String _question;
-  TheState(this._question);
+
   @override
   Widget build(BuildContext c){
     return new Material(
             child: new Padding(
               padding: new EdgeInsets.symmetric(vertical:10.0),
-              child: new Center(child: Text(_question,
+              child: new Center(child: Text(widget.question,
               style: new TextStyle(fontSize: _fontSizeAnime.value *15, color: Colors.black, fontWeight:  FontWeight.bold),)
                 )
             )

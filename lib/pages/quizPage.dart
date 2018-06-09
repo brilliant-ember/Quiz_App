@@ -9,8 +9,6 @@ class QuizPage extends StatefulWidget {
   // the QuizPageState class
   @override
   State createState() => new QuizPageState();
-
-
 }
 
 // the state class
@@ -22,7 +20,8 @@ class QuizPageState extends State<QuizPage> {
   bool overlay=false;
   Quiz quiz = new Quiz([
     new Question("Can humans fly?", false),
-    new Question("Is English spoken in Canada?", true)
+    new Question("Is English spoken in Canada?", true),
+    new Question("Is my name Mo?", true)
   ]); 
 
   @override
@@ -46,7 +45,13 @@ class QuizPageState extends State<QuizPage> {
              new AnswerBtn("Wrong!", false, (){handleAnswer(false);} ),
         ],//childeren
       ),//column
-      overlay ? new ResponceOverlay(isCorrect) : new Container()
+      overlay ? new ResponceOverlay(isCorrect, (){
+       currentQ = quiz.nextQuestion;
+        this.setState((){
+          overlay = false;
+          qText = currentQ.question;});
+
+      }) : new Container()
       ],
     );
   }

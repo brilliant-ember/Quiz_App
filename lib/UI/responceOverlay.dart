@@ -3,8 +3,9 @@ import "dart:math";
 
 class ResponceOverlay extends StatefulWidget{
   final bool _isRight;
+   final VoidCallback _tapped;
 
-  ResponceOverlay(this._isRight);
+  ResponceOverlay(this._isRight, this._tapped);
 
 @override
 State<StatefulWidget> createState() { // could have used => instead of return
@@ -31,14 +32,14 @@ class ResponceOverlayState extends State<ResponceOverlay> with SingleTickerProvi
     return new Material(
       color: Colors.black45,
       child: new InkWell(
-        onTap: () => print("You tapped the overlay"),
+        onTap: () => widget._tapped(),
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             new Container(
               decoration: new BoxDecoration(color: Colors.white, shape: BoxShape.circle),
               child: new Transform.rotate(
-                angle: _iconAnime.value * 4 * PI, 
+                angle: _iconAnime.value * 2 * PI, 
                 child: new Icon(widget._isRight ? Icons.done : Icons.close, size: _iconAnime.value * 80.0),
               ),
             ),
