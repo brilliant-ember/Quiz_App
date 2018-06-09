@@ -2,8 +2,7 @@
 class Question{
   final String question;
   final bool answer;
-  Question(this.question, this.answer){
-  }
+  Question(this.question, this.answer);
 }
 
 //The quiz that uses question objects

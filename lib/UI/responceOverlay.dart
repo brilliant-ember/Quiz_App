@@ -25,7 +25,11 @@ class ResponceOverlayState extends State<ResponceOverlay> with SingleTickerProvi
       _iconAnime.addListener(() => this.setState( () {}));
       _iconAnimeCont.forward();
     }
-
+  @override//have to dispose the animeation too to free up resources in the device
+  void dispose(){
+    _iconAnimeCont.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext c){
     return new Material(

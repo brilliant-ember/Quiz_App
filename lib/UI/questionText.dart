@@ -21,9 +21,12 @@ class TheState extends State<QuestionText> with SingleTickerProviderStateMixin{
     _fontSizeAnime.addListener( ()=> this.setState( () {}));
     _fontSizeAnimeController.forward();
   }
-
+  @override ///have to dispose the animeation too to free up resources in the device
+  void dispose(){
+    _fontSizeAnimeController.dispose();
+    super.dispose();
+  }
   @override
-  void @override
     void didUpdateWidget(QuestionText oldWidget) {
       // TODO: implement didUpdateWidget
       super.didUpdateWidget(oldWidget);

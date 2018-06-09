@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'quizPage.dart';
 
-class homePage extends StatelessWidget{
+class HomePage extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     Material material = new Material(
       color: Colors.purpleAccent,
       child: new InkWell(
-        onTap: ()=>print("Kelkh shoz means something"),
+        onTap: ()=> Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new QuizPage())),
         child: new Column (
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget> [

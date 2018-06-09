@@ -3,6 +3,7 @@ import "package:app/utils/quiz.dart";
 import "package:app/UI/AnswerBtn.dart";
 import 'package:app/UI/questionText.dart';
 import 'package:app/UI/responceOverlay.dart';
+import 'package:app/pages/scorePage.dart';
 
 class QuizPage extends StatefulWidget {
   // stateful widget needs a state, that's y I made
@@ -46,7 +47,11 @@ class QuizPageState extends State<QuizPage> {
         ],//childeren
       ),//column
       overlay ? new ResponceOverlay(isCorrect, (){
-       currentQ = quiz.nextQuestion;
+        currentQ = quiz.nextQuestion;
+        if (currentQ == null){
+          Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(builder: (BuildContext context) => new ScorePage(quiz.score, quiz.numberOfQuestions)), (Route route)=> route == null);
+          return; //  returning nothing so that the SetState does not get invoked
+        }
         this.setState((){
           overlay = false;
           qText = currentQ.question;});
