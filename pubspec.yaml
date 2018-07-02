@@ -1,9 +1,13 @@
 name: app
-description: A new Flutter project.
+description: Social Quiz App.
+author: Mohammed Al-Ameen
 
 dependencies:
   flutter:
     sdk: flutter
+  json_annotation: ^0.2.3
+  firebase_database: ^0.4.1
+  firebase_core: any
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -12,6 +16,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  #build_runner: ^0.8.0
+  json_serializable: ^0.5.0
 
 
 # For information on the generic Dart part of this file, see the
@@ -55,3 +61,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
+

@@ -10,9 +10,10 @@ class Quiz{
   List<Question> _questions;
   int _currentQuestionNo = -1 ; // the index of the current Q
   int _score = 0;
+  String _title; //the title of the quiz
   
   //constractor
-  Quiz(this._questions){
+  Quiz(this._questions, this._title){
     _questions.shuffle();
   }
 
@@ -21,6 +22,7 @@ class Quiz{
   List<Question> get question =>_questions;
   int get numberOfQuestions => _questions.length;
   int get curentQuestion => _currentQuestionNo + 1 ;
+  String get quizTitle => _title;
 
   Question get nextQuestion{
     _currentQuestionNo++;

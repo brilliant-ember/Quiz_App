@@ -1,4 +1,8 @@
 buildscript {
+    dependencies {
+    // for the firebase
+    //classpath 'com.google.gms:google-services:4.0.0'
+  }
     repositories {
         google()
         jcenter()
