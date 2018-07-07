@@ -15,7 +15,15 @@ List<Quiz> allQuizzes= [Quiz([
   Question("AI is a programming techinque", true),
   Question  ("AI has been around for more than a decade", true),
   Question("AI has a lot of applications", true)
-], "Test Quiz")];
+], "Test Quiz"),
+Quiz([
+  Question ("Hey?", false),
+  Question("Ho", false),
+  Question("Let's", true),
+  Question  ("go", true),
+  Question("salut", true)
+], "second Quiz") ];
+Quiz quiz = allQuizzes[0];
 
 ///////Here is the data base schinanigens
 // final FirebaseApp app = FirebaseApp(
@@ -41,6 +49,9 @@ class QuizPage extends StatefulWidget {
 
 // the state class
 class QuizPageState extends State<QuizPage> {
+
+TextEditingController text = TextEditingController();
+
   //List<Quiz> allQuizzes;
   Question currentQ;
   String qText;
@@ -53,12 +64,10 @@ class QuizPageState extends State<QuizPage> {
   //   new Question("Is my name Mo?", true)
   // ]); 
 
-  Quiz quiz = allQuizzes[0];
-
-
   @override
   void initState(){
     super.initState();
+    print("This is the initState");
     currentQ = quiz.nextQuestion;
     qText = currentQ.question;
     qNum = quiz.numberOfQuestions;
@@ -108,12 +117,36 @@ class QuizPageState extends State<QuizPage> {
           ListTile(
             title: Text("MAKE"),
             trailing: Icon(Icons.save),
-            onTap: makeButton,
+            onTap: () => makeButton(context)
           ),
+            TextField(
+              onChanged: (x){text.text = x;},
+            ),
           ListTile(
             title: Text("LOAD"),
             trailing: Icon(Icons.label),
             onTap: loadButton,
+          ),
+          Container(
+            decoration: BoxDecoration(
+             // color:  Colors.amberAccent,
+              border: Border.all(color: Colors.blueGrey, width: 8.0),
+        
+            ),
+            
+            child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: allQuizzes.length,
+            itemBuilder: (context, index){
+              return ListTile(
+                title: Text(allQuizzes[index].quizTitle),
+                onTap: (){
+                  print(index.toString());
+                  
+                 this.setState((){quiz = allQuizzes[index];});
+                },);
+            },
+          )
           )
         ],
       ),
@@ -132,7 +165,29 @@ class QuizPageState extends State<QuizPage> {
 
 }
 
-void makeButton(){print("object");}
+void makeButton(BuildContext context){
+  print("Make Function");
+  Navigator.of(context).push(PageRouteBuilder(
+                opaque: false,
+                pageBuilder: (BuildContext context,_,__){
+                  return new Material(
+                    color: Colors.black45,
+                    child: Container(
+                      child: InkWell(
+                        onTap: () => Navigator.pop(context),
+                      child:Hero(
+                        child: Icon(Icons.arrow_drop_down_circle,size: 50.0,color: Colors.white),
+                        tag: "makeHero",
+                      ),
+                      ),
+                    ),
+                  );
+  
+                }
+              )
+              );
+            
+}
 void loadButton(){print("load");}
 
 //this item will be passed to the Database
