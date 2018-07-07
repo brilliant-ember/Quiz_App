@@ -119,9 +119,6 @@ TextEditingController text = TextEditingController();
             trailing: Icon(Icons.save),
             onTap: () => makeButton(context)
           ),
-            TextField(
-              onChanged: (x){text.text = x;},
-            ),
           ListTile(
             title: Text("LOAD"),
             trailing: Icon(Icons.label),
@@ -163,8 +160,6 @@ TextEditingController text = TextEditingController();
     });
   }
 
-}
-
 void makeButton(BuildContext context){
   print("Make Function");
   Navigator.of(context).push(PageRouteBuilder(
@@ -176,7 +171,11 @@ void makeButton(BuildContext context){
                       child: InkWell(
                         onTap: () => Navigator.pop(context),
                       child:Hero(
-                        child: Icon(Icons.arrow_drop_down_circle,size: 50.0,color: Colors.white),
+                        child: 
+            TextField(
+              onChanged: (x){text.text = x;},
+            ),
+                        //Icon(Icons.arrow_drop_down_circle,size: 50.0,color: Colors.white),
                         tag: "makeHero",
                       ),
                       ),
@@ -188,6 +187,12 @@ void makeButton(BuildContext context){
               );
             
 }
+
+
+
+}
+
+
 void loadButton(){print("load");}
 
 //this item will be passed to the Database
