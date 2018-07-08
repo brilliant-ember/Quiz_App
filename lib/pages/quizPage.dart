@@ -4,6 +4,7 @@ import "package:app/UI/AnswerBtn.dart";
 import 'package:app/UI/questionText.dart';
 import 'package:app/UI/responceOverlay.dart';
 import 'package:app/pages/scorePage.dart';
+import 'dart:async';
 //these imports are for the firebase
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -160,33 +161,74 @@ TextEditingController text = TextEditingController();
     });
   }
 
-void makeButton(BuildContext context){
-  print("Make Function");
-  Navigator.of(context).push(PageRouteBuilder(
-                opaque: false,
-                pageBuilder: (BuildContext context,_,__){
-                  return new Material(
-                    color: Colors.black45,
-                    child: Container(
-                      child: InkWell(
-                        onTap: () => Navigator.pop(context),
-                      child:Hero(
-                        child: 
-            TextField(
-              onChanged: (x){text.text = x;},
-            ),
-                        //Icon(Icons.arrow_drop_down_circle,size: 50.0,color: Colors.white),
-                        tag: "makeHero",
-                      ),
-                      ),
-                    ),
-                  );
-  
-                }
-              )
-              );
-            
+Future<Quiz>makeButton(BuildContext context) {
+  Quiz newQuiz;
+  String q;
+  return showDialog<Null>(
+    context: context,
+    //barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return new AlertDialog(
+        title: new Text('Make a quiz!', textAlign:TextAlign.center,),
+        content: new SingleChildScrollView(
+          child: new ListBody(
+            children: <Widget>[
+              new ListTile(
+             title: TextField(
+               decoration: InputDecoration(
+                 hintText:"quiz name",
+               ),
+                 onChanged: (x){newQuiz.setTitle(x);},
+                ),
+              ),
+              new Text('Now put in the questions and the answers'),
+
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          new FlatButton(
+            child: new Text('Done'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
+
+
+
+
+  //       void makeButton(BuildContext context){
+  // print("Make Function");
+  // Navigator.of(context).push(PageRouteBuilder(
+  //               opaque: false,
+  //               pageBuilder: (BuildContext context,_,__){
+  //                 return new Material(
+  //                   color: Colors.black45,
+  //                   child: Container(
+  //                     child: InkWell(
+  //                       onTap: () => Navigator.pop(context),
+  //                     child:Hero(
+  //                       child: 
+  //           TextField(
+  //             onChanged: (x){text.text = x;},
+  //           ),
+  //                       //Icon(Icons.arrow_drop_down_circle,size: 50.0,color: Colors.white),
+  //                       tag: "makeHero",
+  //                     ),
+  //                     ),
+  //                   ),
+  //                 );
+  
+  //               }
+  //             )
+  //             );
+            
+  //       }
 
 
 

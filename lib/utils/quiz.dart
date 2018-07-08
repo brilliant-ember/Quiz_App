@@ -24,6 +24,15 @@ class Quiz{
   int get curentQuestion => _currentQuestionNo + 1 ;
   String get quizTitle => _title;
 
+  //setters
+  void  setTitle(String s){
+  _title =s;
+  }
+  void addQuestion(Question q){
+    _questions.add(q);
+    _questions.shuffle();
+  }
+
   Question get nextQuestion{
     _currentQuestionNo++;
     //if the current question is higher or equal the no of Q,
